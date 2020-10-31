@@ -1,0 +1,7 @@
+name: DoubleA-Bungeecord
+main: com.andrew121410.mc.doubleabungeecord.DoubleANetwork
+version: 1.0
+author: Andrew121410
+
+commands:
+  hub:
