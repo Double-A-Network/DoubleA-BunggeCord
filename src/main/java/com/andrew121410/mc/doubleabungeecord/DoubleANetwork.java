@@ -1,7 +1,7 @@
 package com.andrew121410.mc.doubleabungeecord;
 
 import com.andrew121410.mc.doubleabungeecord.commands.HubCMD;
-import com.andrew121410.mc.doubleabungeecord.events.OnServerConnectEvent;
+import com.andrew121410.mc.doubleabungeecord.events.OnServerConnectedEvent;
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class DoubleANetwork extends Plugin {
@@ -20,10 +20,14 @@ public class DoubleANetwork extends Plugin {
     }
 
     public void regEvents() {
-        new OnServerConnectEvent(this);
+        new OnServerConnectedEvent(this);
     }
 
     public void regCommands() {
         new HubCMD(this);
+    }
+
+    public static DoubleANetwork getInstance() {
+        return plugin;
     }
 }
