@@ -1,4 +1,4 @@
-package com.andrew121410.mc.doubleabungeecord.events;
+package com.andrew121410.mc.doubleabungeecord.listeners;
 
 import com.andrew121410.mc.doubleabungeecord.DoubleANetwork;
 import com.andrew121410.mc.doubleabungeecord.utils.Color;

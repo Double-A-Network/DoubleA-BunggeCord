@@ -1,7 +1,8 @@
 package com.andrew121410.mc.doubleabungeecord;
 
+import com.andrew121410.mc.doubleabungeecord.commands.DiscordCMD;
 import com.andrew121410.mc.doubleabungeecord.commands.HubCMD;
-import com.andrew121410.mc.doubleabungeecord.events.OnServerConnectedEvent;
+import com.andrew121410.mc.doubleabungeecord.listeners.OnServerConnectedEvent;
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class DoubleANetwork extends Plugin {
@@ -11,20 +12,21 @@ public class DoubleANetwork extends Plugin {
     @Override
     public void onEnable() {
         plugin = this;
-        regEvents();
-        regCommands();
+        registerListeners();
+        registerCommands();
     }
 
     @Override
     public void onDisable() {
     }
 
-    public void regEvents() {
+    public void registerListeners() {
         new OnServerConnectedEvent(this);
     }
 
-    public void regCommands() {
+    public void registerCommands() {
         new HubCMD(this);
+        new DiscordCMD(this);
     }
 
     public static DoubleANetwork getInstance() {
