@@ -11,7 +11,7 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class HubCMD extends Command {
 
-    private DoubleANetwork plugin;
+    private final DoubleANetwork plugin;
 
     public HubCMD(DoubleANetwork plugin) {
         super("hub");
@@ -21,11 +21,11 @@ public class HubCMD extends Command {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (!(sender instanceof ProxiedPlayer)) {
+        if (!(sender instanceof ProxiedPlayer player)) {
             sender.sendMessage(new ComponentBuilder("This command can only be run by a player!").color(ChatColor.RED).create());
             return;
         }
-        ProxiedPlayer player = (ProxiedPlayer) sender;
+
         if (player.getServer().getInfo().getName().equalsIgnoreCase("hub")) {
             player.sendMessage(new ComponentBuilder("You are already connected to the Hub!").color(ChatColor.RED).create());
             return;

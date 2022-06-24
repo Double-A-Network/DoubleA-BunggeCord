@@ -2,6 +2,7 @@ package com.andrew121410.mc.doubleabungeecord;
 
 import com.andrew121410.mc.doubleabungeecord.commands.DiscordCMD;
 import com.andrew121410.mc.doubleabungeecord.commands.HubCMD;
+import com.andrew121410.mc.doubleabungeecord.listeners.OnProxyPingEvent;
 import com.andrew121410.mc.doubleabungeecord.listeners.OnServerConnectedEvent;
 import com.andrew121410.simpleruntimepatcher.SimpleRuntimePatcher;
 import javassist.ClassPool;
@@ -18,7 +19,10 @@ public class DoubleANetwork extends Plugin {
     public void onEnable() {
         plugin = this;
 
-        patchUp();
+        // Patching
+        patchBrandName();
+        SimpleRuntimePatcher.create();
+
         registerListeners();
         registerCommands();
     }
@@ -28,6 +32,7 @@ public class DoubleANetwork extends Plugin {
     }
 
     public void registerListeners() {
+        new OnProxyPingEvent(this);
         new OnServerConnectedEvent(this);
     }
 
@@ -36,7 +41,7 @@ public class DoubleANetwork extends Plugin {
         new DiscordCMD(this);
     }
 
-    private void patchUp() {
+    private void patchBrandName() {
         try {
             Class<?> theClass = Class.forName("net.md_5.bungee.BungeeCord");
 
@@ -58,8 +63,6 @@ public class DoubleANetwork extends Plugin {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-        SimpleRuntimePatcher.create();
     }
 
     public static DoubleANetwork getInstance() {

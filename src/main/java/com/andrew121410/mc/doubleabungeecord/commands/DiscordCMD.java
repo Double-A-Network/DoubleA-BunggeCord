@@ -12,7 +12,7 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class DiscordCMD extends Command {
 
-    private DoubleANetwork plugin;
+    private final DoubleANetwork plugin;
 
     public DiscordCMD(DoubleANetwork plugin) {
         super("discord");
@@ -22,11 +22,10 @@ public class DiscordCMD extends Command {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (!(sender instanceof ProxiedPlayer)) {
+        if (!(sender instanceof ProxiedPlayer player)) {
             sender.sendMessage(new ComponentBuilder("This command can only be run by a player!").color(ChatColor.RED).create());
             return;
         }
-        ProxiedPlayer player = (ProxiedPlayer) sender;
 
         ComponentBuilder componentBuilder = new ComponentBuilder("Discord: https://discord.gg/pbrueZB")
                 .color(ChatColor.RED)
