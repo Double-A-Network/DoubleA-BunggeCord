@@ -9,15 +9,19 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.LoaderClassPath;
+import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class DoubleANetwork extends Plugin {
 
     private static DoubleANetwork plugin;
 
+    private BungeeAudiences adventure;
+
     @Override
     public void onEnable() {
         plugin = this;
+        this.adventure = BungeeAudiences.create(this);
 
         // Patching
         patchBrandName();
@@ -29,6 +33,11 @@ public class DoubleANetwork extends Plugin {
 
     @Override
     public void onDisable() {
+        // From https://docs.advntr.dev/platform/bungeecord.html
+        if (this.adventure != null) {
+            this.adventure.close();
+            this.adventure = null;
+        }
     }
 
     public void registerListeners() {
@@ -63,6 +72,10 @@ public class DoubleANetwork extends Plugin {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public BungeeAudiences getAdventure() {
+        return adventure;
     }
 
     public static DoubleANetwork getInstance() {
