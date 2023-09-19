@@ -37,7 +37,7 @@ public class OnProxyPingEvent implements Listener {
 
     private void pingHubServer() {
         this.plugin.getProxy().getScheduler().schedule(this.plugin, () -> {
-            this.plugin.getProxy().getServersCopy().get("hub").ping((serverPing, throwable) -> isHubOnline = throwable == null);
+            this.plugin.getProxy().getServers().get("hub").ping((serverPing, throwable) -> isHubOnline = throwable == null);
         }, 0, 30, TimeUnit.SECONDS);
     }
 }
